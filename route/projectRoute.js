@@ -1,0 +1,12 @@
+const express = require("express")
+const router = express.Router()
+const {verifyToken }= require("../controller/jwt")
+const collectdata = require("../controller/projectApi")
+const {upload}= require("../middleware/middleware")
+router.post("/register",collectdata.register)
+router.post("/login",collectdata.login)
+router.get("/getData/:id",collectdata.getData)
+router.get("/get",verifyToken,collectdata.getallproduct)
+router.post("/product",upload,collectdata.addproduct)
+router.post("/updateproduct/:id",upload,collectdata.updateProduct)
+module.exports = router
